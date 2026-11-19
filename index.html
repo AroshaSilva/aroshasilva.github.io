@@ -197,11 +197,109 @@
 
         .repo-card .meta span { display: inline-flex; align-items: center; gap: 0.3rem; }
 
-        /* Featured card gets a permanent subtle glow */
+        /* Active/featured card gets a permanent subtle glow */
         #featured-list .repo-card {
             border-color: rgba(0, 255, 255, 0.4);
             box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
         }
+
+        /* ===== Figma / UI-UX Card ===== */
+        .figma-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem 1.8rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.35s ease;
+        }
+
+        .figma-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px rgba(162, 89, 255, 0.25);
+        }
+
+        .figma-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #a259ff;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 8px rgba(162, 89, 255, 0.6);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .figma-card h3 svg { flex-shrink: 0; }
+
+        .figma-card p {
+            color: #b8b8d0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+        }
+
+        .figma-card .meta {
+            font-size: 0.85rem;
+            color: #8888aa;
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .figma-embed-wrap {
+            margin-top: 1rem;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(162, 89, 255, 0.25);
+            display: none;
+        }
+
+        .figma-card.expanded .figma-embed-wrap { display: block; }
+
+        .figma-embed-wrap iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+            display: block;
+            background: #1e1e1e;
+        }
+
+        .figma-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.6rem;
+            font-size: 0.85rem;
+            color: #a259ff;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+            padding: 0;
+            transition: color 0.3s ease;
+        }
+
+        .figma-toggle:hover { color: #c084fc; }
+
+        .figma-toggle::after {
+            content: '▾';
+            transition: transform 0.3s ease;
+        }
+
+        .figma-card.expanded .figma-toggle::after { transform: rotate(180deg); }
+
+        .figma-link {
+            color: #a259ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .figma-link:hover { color: #c084fc; }
 
         /* ===== Contacts ===== */
         .contacts {
@@ -268,16 +366,39 @@
             <img id="avatar" class="avatar" src="https://github.com/AroshaSilva.png" alt="Arosha Silva avatar">
             <h1>Arosha Silva</h1>
         </div>
-        <p class="subtitle">Developer &nbsp;•&nbsp; Builder &nbsp;•&nbsp; Problem Solver</p>
+        <p class="subtitle">Developer &nbsp;•&nbsp; UI/UX Designer &nbsp;•&nbsp; Gamer</p>
 
-        <h2>Featured Project</h2>
+        <h2>Active Project</h2>
         <div id="featured-list" class="repo-list loading">Loading project...</div>
 
         <h2>Academic Coding Projects</h2>
         <div id="academic-list" class="repo-list loading">Loading projects...</div>
 
+        <h2>UI/UX Designs</h2>
+        <div id="figma-list" class="repo-list loading">Loading designs...</div>
+
         <h2>Contacts</h2>
         <div class="contacts">
+            <a class="contact-item" href="https://www.linkedin.com/in/arosha-silva-5673b51b7/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true">
+                    <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/>
+                </svg>
+                <span>LinkedIn</span>
+            </a>
+
+            <span class="divider" aria-hidden="true">|</span>
+
+            <a class="contact-item" href="https://sites.google.com/view/arosha-silva/home" target="_blank" rel="noopener" aria-label="Portfolio">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M3 12h18"/>
+                    <path d="M12 3a14 14 0 0 1 0 18"/>
+                    <path d="M12 3a14 14 0 0 0 0 18"/>
+                </svg>
+                <span>Portfolio</span>
+            </a>
+
+                    <div class="contacts">
             <a class="contact-item" href="https://www.linkedin.com/in/YOUR-LINKEDIN-HANDLE" target="_blank" rel="noopener" aria-label="LinkedIn">
                 <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true">
                     <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/>
@@ -287,7 +408,7 @@
 
             <span class="divider" aria-hidden="true">|</span>
 
-            <a class="contact-item" href="https://YOUR-PORTFOLIO-SITE.com" target="_blank" rel="noopener" aria-label="Portfolio">
+            <a class="contact-item" href="https://sites.google.com/view/arosha-silva/home" target="_blank" rel="noopener" aria-label="Portfolio">
                 <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <circle cx="12" cy="12" r="9"/>
                     <path d="M3 12h18"/>
@@ -296,6 +417,20 @@
                 </svg>
                 <span>Portfolio</span>
             </a>
+
+            <span class="divider" aria-hidden="true">|</span>
+
+            <a class="contact-item" href="https://www.figma.com/@gamerlaza_" target="_blank" rel="noopener" aria-label="Figma">
+                <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+                    <path fill="#f24e1e" d="M8 24a4 4 0 0 0 4-4v-4H8a4 4 0 1 0 0 8z"/>
+                    <path fill="#ff7262" d="M16 24a4 4 0 0 0 4-4v-4h-4v8z"/>
+                    <path fill="#a259ff" d="M12 8H8a4 4 0 1 0 0 8h4V8z"/>
+                    <path fill="#1abcfe" d="M20 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+                    <path fill="#0acf83" d="M16 0H8a4 4 0 0 0 0 8h8V0z"/>
+                </svg>
+                <span>Figma</span>
+            </a>
+        </div>
         </div>
 
         <footer>© <span id="year"></span> Arosha Silva</footer>
@@ -322,7 +457,19 @@
             'Billing-Simulator': 'Billing Simulator'
         };
 
-        const CACHE_KEY = 'aroshaportfolio_cache_v3';
+        // ===== UI/UX Designs (Figma) =====
+        // No public Figma metadata API → hardcoded. Add new entries here.
+        const FIGMA_PROJECTS = [
+            {
+                title: 'EduMart',
+                description: 'E-commerce UI/UX design for an educational marketplace — homepage, product detail pages, and a complete design system.',
+                url: 'https://www.figma.com/community/file/1668505195173173916',
+                embedUrl: 'https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/community/file/1668505195173173916',
+                meta: 'UI Design • E-commerce • Design System'
+            }
+        ];
+
+        const CACHE_KEY = 'aroshaportfolio_cache_v4';
         const CACHE_DURATION = 60 * 60 * 1000; // 1 hour
 
         // ===== Data Fetching =====
@@ -379,6 +526,7 @@
 
         function renderGroup(elementId, repoList, fetchedRepos) {
             const el = document.getElementById(elementId);
+            if (!el) return;
             const ordered = repoList
                 .map(name => fetchedRepos.find(r => r.name === name))
                 .filter(Boolean);
@@ -391,9 +539,67 @@
             el.classList.remove('loading');
         }
 
+        // Figma card with live expandable embed
+        function buildFigmaCard(project, index) {
+            const figmaLogo = `
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                    <path fill="#f24e1e" d="M8 24a4 4 0 0 0 4-4v-4H8a4 4 0 1 0 0 8z"/>
+                    <path fill="#ff7262" d="M16 24a4 4 0 0 0 4-4v-4h-4v8z"/>
+                    <path fill="#a259ff" d="M12 8H8a4 4 0 1 0 0 8h4V8z"/>
+                    <path fill="#1abcfe" d="M20 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+                    <path fill="#0acf83" d="M16 0H8a4 4 0 0 0 0 8h8V0z"/>
+                </svg>
+            `;
+            return `
+                <div class="figma-card" data-index="${index}">
+                    <h3>${figmaLogo} ${project.title}</h3>
+                    <p>${project.description}</p>
+                    <div class="meta">
+                        <span>🎨 ${project.meta}</span>
+                    </div>
+                    <button class="figma-toggle" data-index="${index}">Preview design</button>
+                    <div class="figma-embed-wrap" id="figma-embed-${index}"></div>
+                    <div class="meta" style="margin-top:0.8rem;">
+                        <a class="figma-link" href="${project.url}" target="_blank" rel="noopener">View on Figma →</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderFigmaProjects() {
+            const el = document.getElementById('figma-list');
+            if (!el) return;
+            if (FIGMA_PROJECTS.length === 0) {
+                el.innerHTML = '<p class="loading">No designs added yet.</p>';
+                return;
+            }
+            el.innerHTML = FIGMA_PROJECTS.map(buildFigmaCard).join('');
+            el.classList.remove('loading');
+
+            el.querySelectorAll('.figma-toggle').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const index = btn.dataset.index;
+                    const card = btn.closest('.figma-card');
+                    const wrap = document.getElementById(`figma-embed-${index}`);
+                    const project = FIGMA_PROJECTS[index];
+
+                    const isExpanded = card.classList.toggle('expanded');
+
+                    if (isExpanded && !wrap.dataset.loaded) {
+                        const iframe = document.createElement('iframe');
+                        iframe.src = project.embedUrl;
+                        iframe.loading = 'lazy';
+                        iframe.allowFullscreen = true;
+                        iframe.title = `${project.title} Figma preview`;
+                        wrap.appendChild(iframe);
+                        wrap.dataset.loaded = 'true';
+                    }
+                });
+            });
+        }
+
         // ===== Rendering =====
         function render(repos) {
-            // Ensure the avatar loads (also set as fallback via HTML src)
             const avatar = document.getElementById('avatar');
             if (!avatar.src || avatar.src === window.location.href) {
                 avatar.src = `https://github.com/${GITHUB_USERNAME}.png`;
@@ -401,10 +607,16 @@
 
             renderGroup('featured-list', FEATURED_REPOS, repos);
             renderGroup('academic-list', ACADEMIC_REPOS, repos);
+            renderFigmaProjects();
         }
 
         // ===== Init =====
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Render UI/UX section immediately (no API needed)
+        renderFigmaProjects();
+
+        // Fetch GitHub data
         fetchGitHubData();
     </script>
 </body>
