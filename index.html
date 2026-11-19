@@ -7,7 +7,7 @@
     <style>
         /* ===== Reset & Base ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             min-height: 100vh;
@@ -17,7 +17,6 @@
         }
 
         /* ===== Animated Gradient Background ===== */
-        /* This creates a background that smoothly shifts colors over time */
         body::before {
             content: '';
             position: fixed;
@@ -35,13 +34,12 @@
             animation: gradientShift 20s ease infinite;
         }
 
-        /* Subtle moving glow orbs on top of the gradient */
         body::after {
             content: '';
             position: fixed;
             inset: 0;
             z-index: -1;
-            background: 
+            background:
                 radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.08), transparent 40%),
                 radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.08), transparent 40%);
             animation: orbFloat 15s ease-in-out infinite alternate;
@@ -66,13 +64,35 @@
             padding: 4rem 1.5rem;
         }
 
-        /* ===== Neon Title ===== */
+        /* ===== Header with Avatar + Neon Title ===== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .header img.avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 255, 255, 0.6);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            object-fit: cover;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .header img.avatar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+        }
+
         h1 {
             font-size: clamp(2.2rem, 6vw, 3.8rem);
             font-weight: 700;
             letter-spacing: 2px;
-            text-align: center;
-            margin-bottom: 0.5rem;
             color: #fff;
             text-shadow:
                 0 0 7px #fff,
@@ -97,39 +117,6 @@
             letter-spacing: 1px;
         }
 
-        /* ===== Glass Stats Card ===== */
-        .stats {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 16px;
-            padding: 1.8rem 2rem;
-            margin-bottom: 3rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .stats:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 255, 255, 0.15);
-        }
-
-        .stats img {
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
-            border: 2px solid rgba(0, 255, 255, 0.6);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
-        }
-
-        .stats-info { flex: 1; }
-        .stats-info .name { font-size: 1.4rem; font-weight: 600; color: #fff; }
-        .stats-info .counts { margin-top: 0.4rem; color: #b0b0d0; font-size: 0.95rem; }
-
         /* ===== Section Heading ===== */
         h2 {
             font-size: 1.6rem;
@@ -138,6 +125,7 @@
             color: #fff;
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
             letter-spacing: 1px;
+            margin-top: 2.5rem;
         }
 
         /* ===== Project Cards ===== */
@@ -162,7 +150,6 @@
             transition: all 0.35s ease;
         }
 
-        /* Neon border glow on hover */
         .repo-card::before {
             content: '';
             position: absolute;
@@ -210,6 +197,58 @@
 
         .repo-card .meta span { display: inline-flex; align-items: center; gap: 0.3rem; }
 
+        /* Featured card gets a permanent subtle glow */
+        #featured-list .repo-card {
+            border-color: rgba(0, 255, 255, 0.4);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
+        }
+
+        /* ===== Contacts ===== */
+        .contacts {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            transition: box-shadow 0.35s ease;
+        }
+
+        .contacts:hover {
+            box-shadow: 0 8px 30px rgba(0, 255, 255, 0.15);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #a0a0c0;
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #0ff;
+            transform: translateY(-2px);
+            filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.8));
+        }
+
+        .contact-item svg { transition: transform 0.3s ease; }
+        .contact-item:hover svg { transform: scale(1.1); }
+
+        .divider {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 1.4rem;
+            font-weight: 300;
+        }
+
         /* ===== Loading placeholder ===== */
         .loading { color: #8888aa; font-style: italic; }
 
@@ -225,13 +264,39 @@
 </head>
 <body>
     <div class="container">
-        <h1>Arosha Silva</h1>
+        <div class="header">
+            <img id="avatar" class="avatar" src="https://github.com/AroshaSilva.png" alt="Arosha Silva avatar">
+            <h1>Arosha Silva</h1>
+        </div>
         <p class="subtitle">Developer &nbsp;•&nbsp; Builder &nbsp;•&nbsp; Problem Solver</p>
 
-        <div id="github-stats" class="stats loading">Loading GitHub profile...</div>
+        <h2>Featured Project</h2>
+        <div id="featured-list" class="repo-list loading">Loading project...</div>
 
-        <h2>Featured Projects</h2>
-        <div id="repo-list" class="repo-list loading">Loading projects...</div>
+        <h2>Academic Coding Projects</h2>
+        <div id="academic-list" class="repo-list loading">Loading projects...</div>
+
+        <h2>Contacts</h2>
+        <div class="contacts">
+            <a class="contact-item" href="https://www.linkedin.com/in/YOUR-LINKEDIN-HANDLE" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true">
+                    <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/>
+                </svg>
+                <span>LinkedIn</span>
+            </a>
+
+            <span class="divider" aria-hidden="true">|</span>
+
+            <a class="contact-item" href="https://YOUR-PORTFOLIO-SITE.com" target="_blank" rel="noopener" aria-label="Portfolio">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M3 12h18"/>
+                    <path d="M12 3a14 14 0 0 1 0 18"/>
+                    <path d="M12 3a14 14 0 0 0 0 18"/>
+                </svg>
+                <span>Portfolio</span>
+            </a>
+        </div>
 
         <footer>© <span id="year"></span> Arosha Silva</footer>
     </div>
@@ -239,106 +304,103 @@
     <script>
         // ===== Configuration =====
         const GITHUB_USERNAME = 'AroshaSilva';
-        // Only these three repos will be shown, in this exact order
+
         const FEATURED_REPOS = [
-            'SideLoad_-_APK_Installer-v1.0-',
+            'SideLoad_-_APK_Installer-v1.0-'
+        ];
+
+        const ACADEMIC_REPOS = [
             'Palace_of_Laptops',
             'Billing-Simulator'
         ];
-        // Nice display names (since repo names are technical)
+
+        const ALL_REPOS = [...new Set([...FEATURED_REPOS, ...ACADEMIC_REPOS])];
+
         const DISPLAY_NAMES = {
             'SideLoad_-_APK_Installer-v1.0-': 'SideLoad — APK Installer',
             'Palace_of_Laptops': 'Palace of Laptops',
             'Billing-Simulator': 'Billing Simulator'
         };
 
-        const CACHE_KEY = 'aroshaportfolio_cache_v1';
+        const CACHE_KEY = 'aroshaportfolio_cache_v3';
         const CACHE_DURATION = 60 * 60 * 1000; // 1 hour
 
         // ===== Data Fetching =====
         async function fetchGitHubData() {
-            // Try cache first
             const cached = localStorage.getItem(CACHE_KEY);
             if (cached) {
                 try {
-                    const { timestamp, user, repos } = JSON.parse(cached);
+                    const { timestamp, repos } = JSON.parse(cached);
                     if (Date.now() - timestamp < CACHE_DURATION) {
-                        render(user, repos);
+                        render(repos);
                         return;
                     }
                 } catch (e) { /* ignore bad cache */ }
             }
 
             try {
-                // Fetch user profile + only the featured repos in parallel
-                const [userRes, ...repoResponses] = await Promise.all([
-                    fetch(`https://api.github.com/users/${GITHUB_USERNAME}`),
-                    ...FEATURED_REPOS.map(name =>
+                const repoResponses = await Promise.all(
+                    ALL_REPOS.map(name =>
                         fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${name}`)
                     )
-                ]);
+                );
 
-                const user = await userRes.json();
                 const repos = await Promise.all(repoResponses.map(r => r.json()));
-
-                // If any repo returned 404 (name typo / renamed), filter it out gracefully
                 const validRepos = repos.filter(r => !r.message);
 
-                // Save to cache
                 localStorage.setItem(CACHE_KEY, JSON.stringify({
                     timestamp: Date.now(),
-                    user,
                     repos: validRepos
                 }));
 
-                render(user, validRepos);
+                render(validRepos);
             } catch (error) {
                 console.error('Failed to fetch GitHub data:', error);
-                document.getElementById('github-stats').innerHTML = 'Could not load GitHub data. Please try again later.';
-                document.getElementById('repo-list').innerHTML = '';
+                document.getElementById('featured-list').innerHTML = '<p class="loading">Could not load projects.</p>';
+                document.getElementById('academic-list').innerHTML = '<p class="loading">Could not load projects.</p>';
             }
         }
 
-        // ===== Rendering =====
-        function render(user, repos) {
-            // Profile stats
-            document.getElementById('github-stats').innerHTML = `
-                <img src="${user.avatar_url}" alt="${user.login} avatar">
-                <div class="stats-info">
-                    <div class="name">${user.name || user.login}</div>
-                    <div class="counts">
-                        ${user.public_repos} repositories &nbsp;•&nbsp; ${user.followers} followers
+        // ===== Helpers =====
+        function buildCard(repo) {
+            const displayName = DISPLAY_NAMES[repo.name] || repo.name;
+            return `
+                <a class="repo-card" href="${repo.html_url}" target="_blank" rel="noopener">
+                    <h3>${displayName}</h3>
+                    <p>${repo.description || 'No description provided yet.'}</p>
+                    <div class="meta">
+                        <span>⭐ ${repo.stargazers_count}</span>
+                        <span>🍴 ${repo.forks_count}</span>
+                        <span>💻 ${repo.language || 'N/A'}</span>
                     </div>
-                </div>
+                </a>
             `;
-            document.getElementById('github-stats').classList.remove('loading');
+        }
 
-            // Project cards — keep the original FEATURED_REPOS order
-            const repoList = document.getElementById('repo-list');
-            const ordered = FEATURED_REPOS
-                .map(name => repos.find(r => r.name === name))
-                .filter(Boolean); // drop any that failed to load
+        function renderGroup(elementId, repoList, fetchedRepos) {
+            const el = document.getElementById(elementId);
+            const ordered = repoList
+                .map(name => fetchedRepos.find(r => r.name === name))
+                .filter(Boolean);
 
             if (ordered.length === 0) {
-                repoList.innerHTML = '<p class="loading">No projects could be loaded.</p>';
+                el.innerHTML = '<p class="loading">No projects could be loaded.</p>';
                 return;
             }
+            el.innerHTML = ordered.map(buildCard).join('');
+            el.classList.remove('loading');
+        }
 
-            repoList.innerHTML = ordered.map(repo => {
-                const displayName = DISPLAY_NAMES[repo.name] || repo.name;
-                return `
-                    <a class="repo-card" href="${repo.html_url}" target="_blank" rel="noopener">
-                        <h3>${displayName}</h3>
-                        <p>${repo.description || 'No description provided yet.'}</p>
-                        <div class="meta">
-                            <span>⭐ ${repo.stargazers_count}</span>
-                            <span>🍴 ${repo.forks_count}</span>
-                            <span>💻 ${repo.language || 'N/A'}</span>
-                        </div>
-                    </a>
-                `;
-            }).join('');
-            repoList.classList.remove('loading');
+        // ===== Rendering =====
+        function render(repos) {
+            // Ensure the avatar loads (also set as fallback via HTML src)
+            const avatar = document.getElementById('avatar');
+            if (!avatar.src || avatar.src === window.location.href) {
+                avatar.src = `https://github.com/${GITHUB_USERNAME}.png`;
+            }
+
+            renderGroup('featured-list', FEATURED_REPOS, repos);
+            renderGroup('academic-list', ACADEMIC_REPOS, repos);
         }
 
         // ===== Init =====
